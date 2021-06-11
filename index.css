@@ -1,0 +1,15 @@
+.board{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 500px;
+    width: 500px;
+    background-color: blue;
+}
+
+.field{
+    width: 30%;
+    height: 30%;
+    background-color: red;
+}
