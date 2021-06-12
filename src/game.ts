@@ -1,19 +1,19 @@
 import Board from './board'
-import { X, O, Sign } from './player'
+import { Player, Sign } from './player'
 
 class Game {
   board: Board
   sign: Sign = Sign.X
   winner: string | null = null
   players: {
-    X: X
-    O: O
+    X: Player
+    O: Player
   }
 
   constructor() {
     this.players = {
-      [Sign.X]: new X(),
-      [Sign.O]: new O(),
+      [Sign.X]: new Player(Sign.X),
+      [Sign.O]: new Player(Sign.O),
     }
 
     document.querySelector('#reset').addEventListener('click', (): void => {
@@ -66,6 +66,7 @@ class Game {
         this.winner = this.sign
         this.players[this.sign].win()
         this.board.el.classList.add('win-game')
+        console.log(this)
       }
       return isWin
     }

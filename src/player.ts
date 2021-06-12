@@ -1,23 +1,26 @@
-abstract class Player {
-    public abstract sign: string
-    public wins: number = 0
-
-    public win(): void {
-        this.wins++
-    }
-
-}
+import UiElement from './uiElement'
 
 export enum Sign {
   X = 'X',
   O = 'O',
 }
+export class Player extends UiElement {
+  public sign: string
+  public wins: number = 0
 
-export class X extends Player {
-    sign: Sign.X
+  constructor(sign) {
+    super('score')
+    this.sign = sign
+    document.querySelector('#scoreBoard').appendChild(this.el)
+    this.el.innerText = this.getScoreText()
+  }
+
+  public win(): void {
+    this.wins++
+    this.el.innerText = this.getScoreText()
+  }
+
+  private getScoreText(): string {
+    return `${this.sign}: ${this.wins}`
+  }
 }
-export class O extends Player {
-    sign: Sign.O
-}
-
-
