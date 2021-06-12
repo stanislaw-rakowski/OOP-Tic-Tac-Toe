@@ -1,18 +1,15 @@
-class Field {
-    constructor(index: number) {
-        this.create(index)
-    }
+import UiElement from "./uiElement"
 
-    el: HTMLElement
+class Field extends UiElement {
+    selected: string | null = null
 
-    private create(index: number): void {
-        this.el = document.createElement("div");
-        this.el.classList.add("field");
-        this.el.dataset.index = index.toString()
+    constructor() {
+        super("field")
     }
 
     public tick(sign: string): void {
         this.el.innerText = sign
+        this.selected = sign
     }
 }
 

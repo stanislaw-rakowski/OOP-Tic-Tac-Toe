@@ -1,26 +1,23 @@
 import Field from "./field"
+import UiElement from "./uiElement"
 
-class Board {
+class Board extends UiElement {
+    fields: Field[] = []
+
     constructor() {
-        this.create()
+        super("board")
+        document.querySelector("#game").appendChild(this.el);
 
-        for (let i = 1; i < 10; i++) {
-            const field = new Field(i)
+        for (let i = 0; i < 9; i++) {
+            const field = new Field()
             this.fields.push(field)
-            this.board.appendChild(field.el);
+            this.el.appendChild(field.el);
         }
     }
 
-    board: HTMLElement
-    fields: Object[] = []
-
-    private create(): void {
-        this.board = document.createElement("div");
-        this.board.classList.add("board");
-        document.body.appendChild(this.board);
+    public destroy(): void {
+        this.el.remove()
     }
-
-
 }
 
 export default Board

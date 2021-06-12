@@ -1,15 +1,68 @@
-.board{
+body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.board {
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
     height: 500px;
     width: 500px;
-    background-color: blue;
+    background-color: darkgray;
+    padding: 30px;
+    border: solid black 15px;
 }
 
-.field{
+.field {
     width: 30%;
     height: 30%;
-    background-color: red;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 70px;
+    font-family: sans-serif;
 }
+
+.field:hover:empty {
+    background-color: rgb(230, 230, 230);
+    transition: all 400ms; 
+}
+
+.wonGame {
+    background-color: grey;
+}
+
+#reset {
+    border: solid black 5px;
+    padding: 10px 20px;
+    background-color: white;
+    font-size: 24px;
+    color: black;
+    font-family: sans-serif;
+    margin-top: 10px;
+}
+
+#reset:hover {
+    background-color: black;
+    color: white;
+    transition: all 400ms;
+}
+
+#gameSection {
+    display: flex;
+    flex-direction: column;
+}
+
+#scoreBoard {
+    border: solid black 10px;
+    margin: 30 px;
+    padding: 20px 30px;
+    font-family: sans-serif;
+    display: flex;
+}
+   
