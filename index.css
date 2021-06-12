@@ -33,7 +33,7 @@ body {
     transition: all 400ms; 
 }
 
-.wonGame {
+.won-game {
     background-color: grey;
 }
 

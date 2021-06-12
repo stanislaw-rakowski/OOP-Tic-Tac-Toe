@@ -2,9 +2,11 @@ import UiElement from "./uiElement"
 
 class Field extends UiElement {
     selected: string | null = null
+    index: number
 
-    constructor() {
+    constructor(index: number) {
         super("field")
+        this.index = index
     }
 
     public tick(sign: string): void {

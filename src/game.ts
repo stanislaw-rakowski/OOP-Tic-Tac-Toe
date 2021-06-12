@@ -1,39 +1,46 @@
 import Board from "./board"
-
-enum Sign {
-    X = "X",
-    O = "O"
-}
+import { X, O, Sign } from "./player"
 
 class Game {
-    name: string
     board: Board
-    sign: string = Sign.O
+    sign: Sign = Sign.X
     winner: string | null = null
+    players: {
+        X: X,
+        O: O
+    }
+ 
 
-    constructor(name: string) {
-        this.name = name
+    constructor() {
+        this.players = {
+          [Sign.X]: new X(),
+          [Sign.O]: new O(),
+        }
 
-        document.querySelector("#reset").addEventListener("click", () => {
+        document.querySelector("#reset").addEventListener("click", (): void => {
             this.board.destroy()
             this.startGame()
-            this.winner = null;
         })
 
         this.startGame()
     }
 
-    startGame() {
+    startGame(): void {
         this.board = new Board()
+        this.winner = null
+        this.sign = Sign.X
         for (const field of this.board.fields) {
             field.el.addEventListener("click", () => this.makeTurn(field))
         }
     }
 
-    makeTurn(field) {
+    makeTurn(field): void {
         if (field.selected || this.winner) return
+        
         field.tick(this.sign)
+
         this.checkWin()
+
         if (this.sign === Sign.O) {
             this.sign = Sign.X
         } else {
@@ -52,14 +59,15 @@ class Game {
         const checkDiagonals = (): boolean => checkLine(0, 4) || checkLine(2, 2)
 
         if (checkHorizontals() || checkVerticals() || checkDiagonals()) {
-            console.log('win', this.sign)
+            console.log('win', this)
             this.winner = this.sign
-            this.board.el.classList.add("wonGame");
+            this.players[this.sign].win()
+            this.board.el.classList.add("won-game");
         }
 
         if (this.board.fields.every(Field => Field.selected)) {
             console.log("remis")
-            this.board.el.classList.add("wonGame");
+            this.board.el.classList.add("won-game");
         }
     }
 }

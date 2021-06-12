@@ -9,7 +9,7 @@ class Board extends UiElement {
         document.querySelector("#game").appendChild(this.el);
 
         for (let i = 0; i < 9; i++) {
-            const field = new Field()
+            const field: Field = new Field(i)
             this.fields.push(field)
             this.el.appendChild(field.el);
         }
