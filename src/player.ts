@@ -12,15 +12,15 @@ export class Player extends UiElement {
     super('score')
     this.sign = sign
     document.querySelector('#scoreBoard').appendChild(this.el)
-    this.el.innerText = this.getScoreText()
+    this.setScoreText()
   }
 
   public win(): void {
     this.wins++
-    this.el.innerText = this.getScoreText()
+    this.setScoreText()
   }
 
-  private getScoreText(): string {
-    return `${this.sign}: ${this.wins}`
+  private setScoreText(): void {
+    this.el.innerText = `${this.sign}: ${this.wins}`
   }
 }
